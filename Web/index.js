@@ -5,6 +5,7 @@ index.set("view engine", "ejs");
 index.get("/", function(req, res) {
     console.log("run");
     res.render("index");
+    
 });
 
 index.get("/revise", function(req, res){

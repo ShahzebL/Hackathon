@@ -6,11 +6,16 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
 </head>
 <body>
-    <form action="/revise" method="GET">
-        <label for="team_name">Enter name: </label>
-        <input id="essay" type="text" name="essay_field">
-        <input type="submit" value="OK">
-    </form>
+    <div class = "ui main text container segment">
+        <div class = "ui huge header">Text Enhancer</div>
+        <form class = "ui form" action = "/revise" method = "POST">
+            <div class = "field">
+                <textarea name= "essay_field" required></textarea>
+            </div>
+            <input class = "ui green big basic button" type = "submit">
+        </form>
+    </div>
+
 </body>
 
 </html>
