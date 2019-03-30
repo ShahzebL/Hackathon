@@ -11,7 +11,7 @@ public class Revise
 
     public Document()
     {
-        readWords("words.txt")
+        readWords("words.txt");
     }
     public void readWords(String filename)
      {

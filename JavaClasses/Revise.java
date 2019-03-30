@@ -11,7 +11,7 @@ public class Revise
 
     public Revise()
     {
-        readWords("words.txt")
+        readWords("words.txt");
     }
     public void readWords(String filename)
      {
@@ -37,7 +37,7 @@ public class Revise
      public ArrayList<String> spellingErrors()
      {
          ArrayList<String> errors = new ArrayList<String>();
-
+        return errors;
      }
     public void retrieveText(String filename)
      {
