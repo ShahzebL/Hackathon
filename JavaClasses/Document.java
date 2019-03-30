@@ -2,11 +2,16 @@ import java.util.*;
 
 public class Document
 {
-     private BufferedReader f;
-     private PrintWriter outf;
-     private ArrayList<String> wordDictionary;
+    private BufferedReader f;
+    private PrintWriter outf;
+    private ArrayList<String> wordDictionary;
     private ArrayList<String> humanText;
-     public void readWords(String filename)
+
+    public Document(Scanner )
+    {
+        
+    }
+    public void readWords(String filename)
      {
          f = new BufferedReader(new FileReader(filename));
          StringTokenizer st = new StringTokenizer(f.readLine());
