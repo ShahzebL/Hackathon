@@ -2,48 +2,44 @@ import java.util.*;
 import java.io.*;
 import java.util.Arrays;
 
-public class Revise
-{
+public class Revise {
     private BufferedReader f;
     private PrintWriter outf;
     private ArrayList<String> wordDictionary;
     private ArrayList<String> humanText;
     private Scanner inputScanner;
-    private Scanner dictScanner
+    private Scanner dictScanner;
     private Document inputDocument;
 
-    public Revise(Scanner dict, Scanner input)
-    {
+    public Revise(Scanner dict, Scanner input) {
         readWords("words.txt");
         inputScanner = input;
         dictScanner = dict;
     }
-    public void readWords(String filename)
-     {
-         
-         f = new BufferedReader(new FileReader(filename));
-         StringTokenizer st = new StringTokenizer(f.readLine());
-         int numWords = Integer.parseInt(st.nextToken());
 
-         wordDictionary = new String[numWords];
+    public void readWords(String filename) {
 
-         for(int i = 0; i < numWords; i++)
-         {
-             st = new StringTokenizer(f.readLine());
-             wordDictionary.add(st.nextToken());
-         }
-     }
+        f = new BufferedReader(new FileReader(filename));
+        StringTokenizer st = new StringTokenizer(f.readLine());
+        int numWords = Integer.parseInt(st.nextToken());
 
-     public void readInputFile(String filename)
-     {
-         f = new BufferedReader(new FileReader(filename));
-         Scanner sc = new Scanner(f);
-         inputDocument = new Document(sc);
-         inputDocument.parseDocument();
-     } 
+        wordDictionary = new String[numWords];
 
-     public ArrayList<String> spellingErrors()
-     {
-         ArrayList<String> errors = new ArrayList<String>();
+        for (int i = 0; i < numWords; i++) {
+            st = new StringTokenizer(f.readLine());
+            wordDictionary.add(st.nextToken());
+        }
+    }
+
+    public void readInputFile(String filename) {
+        f = new BufferedReader(new FileReader(filename));
+        Scanner sc = new Scanner(f);
+        inputDocument = new Document(sc);
+        inputDocument.parseDocument();
+    }
+
+    public ArrayList<String> spellingErrors() {
+        ArrayList<String> errors = new ArrayList<String>();
         return errors;
-     }
+    }
+}
