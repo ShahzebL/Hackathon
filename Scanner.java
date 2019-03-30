@@ -13,10 +13,10 @@ import java.io.Reader;
  * consists of one of the characters ",",":" or ";". 5. A digit. 6. Any other
  * character not defined above.
  * 
- * @author Mr. Page
  * 
- * @author Shounak Ghosh
- * @version 02.07.2019
+ * 
+ * @author Shounak Ghosh + group
+ * @version 03.30.2019
  *
  */
 public class Scanner

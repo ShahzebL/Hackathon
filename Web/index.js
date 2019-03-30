@@ -3,6 +3,7 @@ index = express();
 index.set("view engine", "ejs");
 
 index.get("/", function(req, res) {
+    console.log("run");
     res.render("index");
 });
 

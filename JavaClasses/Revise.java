@@ -9,7 +9,7 @@ public class Revise
     private ArrayList<String> wordDictionary;
     private ArrayList<String> humanText;
 
-    public Document()
+    public Revise()
     {
         readWords("words.txt")
     }
