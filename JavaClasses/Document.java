@@ -7,9 +7,9 @@ public class Document
     private ArrayList<String> wordDictionary;
     private ArrayList<String> humanText;
 
-    public Document(Scanner )
+    public Document()
     {
-        
+        readWords("words.txt")
     }
     public void readWords(String filename)
      {

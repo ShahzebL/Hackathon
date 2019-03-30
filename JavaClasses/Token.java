@@ -1,51 +1,78 @@
-public class Token
+
+
+/**
+ * The Token class creates Token objects of different token types
+ * @author Shounak Ghosh
+ * @version 2.20.2019
+ */
+final class Token 
 {
-    private String value;
-    private boolean isWord;
-    private String type;
+    private Scanner.TOKEN_TYPE type;
+    private String token;
 
-    private BufferedReader f;
-    private PrintWriter outf;
-    private String[] wordDictionary;
-
-     public void readWords(String filename)
-     {
-         f = new BufferedReader(new FileReader(filename));
-         StringTokenizer st = new StringTokenizer(f.readLine());
-         int numWords = Integer.parseInt(st.nextToken());
-
-         wordDictionary = new String[numWords];
-
-         for(int i = 0; i < numWords; i++)
-         {
-             st = new StringTokenizer(f.readLine());
-             wordDictionary[i] = st.nextToken();
-         }
-     }
-    public Token(String value1, String type1)
+    /**
+     * Constructor: Creates Token objects
+     * @param obj the type of token to be created
+     * @param token the actual token itself
+     */
+    public Token(Scanner.TOKEN_TYPE obj, String token) 
     {
-        this.value = value1;
-        type = type1;
-        
+        type = obj;
+        this.token = token;
     }
 
-    public boolean isWord()
+    /**
+     * Retrieves the token 
+     * @return the String stored in the token variable
+     */
+    public String getToken() 
     {
-        return isWord;
+        return token;
+    }
+    
+    /**
+     * Retrieves the token type
+     * @return the type of the token
+     */
+    public Scanner.TOKEN_TYPE getType()
+    {
+        return type;
     }
 
-    public boolean inDictionary(String word, int low, int high)
+    /**
+     * Retrieves a String representation of the Token object
+     * @return a String representation of the Token object
+     */
+    public String toString() 
     {
-        if(low<high)
+        return "Token: " + token + "\t Type: " + type;
+    }
+
+    /**
+     * Checks if a given object is equal to this
+     * @param other the Object that is checked for equality
+     * @return true if this and other have the same type 
+     *         and their tokens are equal; false otherwise
+     */
+    public boolean equals(Object other) 
+    {
+        if (!(other instanceof Token)) 
         {
-            int mid = (low+high)/2;
-            if(word.compareTo(wordDictionary[mid])>0)
-            {
-                return inDictionary(word, mid, high);
-            }
-            else if(word.compareTo(wordDictionary[])){
-                
-            }
+            return false;
         }
+
+        Token t = (Token) other;
+
+        return token.equals(t.getToken());
     }
+
+    /**
+     * Retrieves the hashValue of the Token Object
+     * @return an integer representation of the token Object
+     */
+    public int hashCode() 
+    {
+        return token.hashCode();
+    }
+
 }
