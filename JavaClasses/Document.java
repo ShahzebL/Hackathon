@@ -38,6 +38,8 @@ public class Revise
      {
          ArrayList<String> errors = new ArrayList<String>();
 
+         return errors;
+
      }
     public void retrieveText(String filename)
      {
