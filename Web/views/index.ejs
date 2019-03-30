@@ -5,62 +5,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
 </head>
-
 <body>
-    <div class="ui fixed inverted menu">
-        <div class="ui container">
-            <div class="header item"><i class="code icon"></i>Spellingly</div>
-        </div>
-    </div>
-    <table>
-        <tr>
-            <td>Text to Save:</td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <textarea id="inputTextToSave" cols="80" rows="25"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <!-- <td>Filename to Save As:</td>
-            <td><input id="inputFileNameToSaveAs"></input></td> -->
-            <td><button onclick="saveTextAsFile()">Revise!</button></td>
-        </tr>
-    </table>
-
-    <script type="text/javascript">
-
-        function saveTextAsFile() {
-            console.log("Revising...");
-            var textToSave = document.getElementById("inputTextToSave").value;
-            var textToSaveAsBlob = new Blob([textToSave], { type: "text/plain" });
-            var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-            var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
-
-            var downloadLink = document.createElement("a");
-            downloadLink.download = fileNameToSaveAs;
-            downloadLink.innerHTML = "Download File";
-            downloadLink.href = textToSaveAsURL;
-            downloadLink.onclick = destroyClickedElement;
-            downloadLink.style.display = "none";
-            document.body.appendChild(downloadLink);
-
-            downloadLink.click();
-        }
-
-        function send() {
-            var fileToSend = document.getElementById("fileToLoad").files[0];
-
-            var fileReader = new FileReader();
-            fileReader.onload = function (fileLoadedEvent) {
-                var textFromFileLoaded = fileLoadedEvent.target.result;
-                document.getElementById("inputTextToSave").value = textFromFileLoaded;
-            };
-            fileReader.readAsText(fileToSend, "UTF-8");
-        }
-
-    </script>
-
+    <form action="/revise" method="GET">
+        <label for="team_name">Enter name: </label>
+        <input id="essay" type="text" name="essay_field">
+        <input type="submit" value="OK">
+    </form>
 </body>
 
 </html>
