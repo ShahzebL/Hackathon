@@ -10,6 +10,7 @@ public class Revise {
     private Scanner inputScanner;
     private Scanner dictScanner;
     private Document inputDocument;
+<<<<<<< HEAD
     
     public Revise(String filename)
     {
@@ -50,6 +51,14 @@ public class Revise {
         inputScanner = input;
         dictScanner = dict;
     }
+=======
+
+    public Revise(Scanner dict, Scanner input) {
+        readWords("words.txt");
+        inputScanner = input;
+        dictScanner = dict;
+    }
+>>>>>>> c3dfc2a52babb2cec2ca801ba790bcb43d2b4719
 
     public void readWords(String filename) {
 
@@ -77,6 +86,7 @@ public class Revise {
         return errors;
     }
 }
+<<<<<<< HEAD
         dictScanner = dict;
     }
 
@@ -106,3 +116,5 @@ public class Revise {
         return errors;
     }
 }
+=======
+>>>>>>> c3dfc2a52babb2cec2ca801ba790bcb43d2b4719
