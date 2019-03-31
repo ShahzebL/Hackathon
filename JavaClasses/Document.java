@@ -23,7 +23,7 @@ public class Document
     private int numSentences;
     private int totWordLen;
 
-    private HashMap<ArrayList<Integer>> wordsInSentences;
+    private HashMap<Token, ArrayList<Integer>> wordsInSentences;
     
     //private int numUniqueWords;
 
@@ -35,7 +35,7 @@ public class Document
     public Document(Scanner sc)
     {
         sentenceCounter = 0;
-        wordsInSentences = new HashMap<ArrayList<Integer>>();
+        wordsInSentences = new HashMap<Token, ArrayList<Integer>>();
         stdin = sc;
         sentences = new ArrayList<Sentence>();
         wordList = new ArrayList<Token>();

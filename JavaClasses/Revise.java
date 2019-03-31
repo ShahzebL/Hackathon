@@ -8,7 +8,7 @@ public class Revise
     private PrintWriter outf;
     private ArrayList<String> wordDictionary;
     private Document inputDocument;
-    private HashMap<ArrayList<Integer>> wordsInSentences;
+    private HashMap<Token, ArrayList<Integer>> wordsInSentences;
 
     public Revise(String filename) throws IOException
     {
