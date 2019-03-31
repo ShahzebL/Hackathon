@@ -11,21 +11,19 @@ public class Revise {
     private Scanner dictScanner;
     private Document inputDocument;
     
-    public Revise(String filename)
+    public Revise(String filename) throws IOException
     {
-        readDictWords("words.txt");
-        readInputFile(inFilefilename);
-
-        
+        readDictWords("wordList.txt");
+        readInputFile(filename);
     }
-    public void readDictWords(String filename)
+    public void readDictWords(String filename) throws IOException
      {
          
          f = new BufferedReader(new FileReader(filename));
          StringTokenizer st = new StringTokenizer(f.readLine());
          int numWords = Integer.parseInt(st.nextToken());
 
-         wordDictionary = new ArrayList<String();
+         wordDictionary = new ArrayList<String>();
 
          for(int i = 0; i < numWords; i++)
          {
@@ -34,7 +32,7 @@ public class Revise {
          }
      }
 
-     public void readInputFile(String filename)
+     public void readInputFile(String filename) throws IOException
      {
          f = new BufferedReader(new FileReader(filename));
          Scanner sc = new Scanner(f);
@@ -42,125 +40,48 @@ public class Revise {
          inputDocument.parseDocument();
      } 
 
-     public ArrayList<String> spellingErrors()
-     {
-         ArrayList<String> errors = new ArrayList<String>();
-    public Revise(Scanner dict, Scanner input) {
-        readWords("words.txt");
-        inputScanner = input;
-        dictScanner = dict;
-    }
+     
 
-    public void readWords(String filename) {
+    public void readWords(String filename) throws IOException
+    {
 
         f = new BufferedReader(new FileReader(filename));
         StringTokenizer st = new StringTokenizer(f.readLine());
         int numWords = Integer.parseInt(st.nextToken());
 
-        wordDictionary = new String[numWords];
+        wordDictionary = new ArrayList<String>();
 
         for (int i = 0; i < numWords; i++) {
             st = new StringTokenizer(f.readLine());
             wordDictionary.add(st.nextToken());
         }
     }
+    public ArrayList<Token> spellingErrors() 
+    {
+        HashSet<Token> inWords = inputDocument.getWordSet();
+        ArrayList<Token> errors = new ArrayList<Token>();
+        
 
-    public void readInputFile(String filename) {
-        f = new BufferedReader(new FileReader(filename));
-        Scanner sc = new Scanner(f);
-        inputDocument = new Document(sc);
-        inputDocument.parseDocument();
-    }
 
-    public ArrayList<String> spellingErrors() {
-        ArrayList<String> errors = new ArrayList<String>();
-        return errors;
-    }
-}
-        dictScanner = dict;
-    }
-
-    public void readWords(String filename) {
-
-        f = new BufferedReader(new FileReader(filename));
-        StringTokenizer st = new StringTokenizer(f.readLine());
-        int numWords = Integer.parseInt(st.nextToken());
-
-        wordDictionary = new String[numWords];
-
-        for (int i = 0; i < numWords; i++) {
-            st = new StringTokenizer(f.readLine());
-            wordDictionary.add(st.nextToken());
+        for(Token t: inWords)
+        {
+            if(!wordDictionary.contains(t.getToken()))
+            {
+                errors.add(t);
+            }
         }
-    }
-
-    public void readInputFile(String filename) {
-        f = new BufferedReader(new FileReader(filename));
-        Scanner sc = new Scanner(f);
-        inputDocument = new Document(sc);
-        inputDocument.parseDocument();
-    }
-
-    public ArrayList<String> spellingErrors() {
-        ArrayList<String> errors = new ArrayList<String>();
         return errors;
     }
-}
-        dictScanner = dict;
-    }
+    
+    public void outputErrors(ArrayList<Token> errors) throws IOException
+    {
+        PrintWriter outf = new PrintWriter(new File("errors.txt"));
 
-    public void readWords(String filename) {
-
-        f = new BufferedReader(new FileReader(filename));
-        StringTokenizer st = new StringTokenizer(f.readLine());
-        int numWords = Integer.parseInt(st.nextToken());
-
-        wordDictionary = new String[numWords];
-
-        for (int i = 0; i < numWords; i++) {
-            st = new StringTokenizer(f.readLine());
-            wordDictionary.add(st.nextToken());
+        for(Token t: errors)
+        {
+            outf.println(t.getToken());
         }
+        outf.close();
     }
-
-    public void readInputFile(String filename) {
-        f = new BufferedReader(new FileReader(filename));
-        Scanner sc = new Scanner(f);
-        inputDocument = new Document(sc);
-        inputDocument.parseDocument();
-    }
-
-    public ArrayList<String> spellingErrors() {
-        ArrayList<String> errors = new ArrayList<String>();
-        return errors;
-    }
-}
-        dictScanner = dict;
-    }
-
-    public void readWords(String filename) {
-
-        f = new BufferedReader(new FileReader(filename));
-        StringTokenizer st = new StringTokenizer(f.readLine());
-        int numWords = Integer.parseInt(st.nextToken());
-
-        wordDictionary = new String[numWords];
-
-        for (int i = 0; i < numWords; i++) {
-            st = new StringTokenizer(f.readLine());
-            wordDictionary.add(st.nextToken());
-        }
-    }
-
-    public void readInputFile(String filename) {
-        f = new BufferedReader(new FileReader(filename));
-        Scanner sc = new Scanner(f);
-        inputDocument = new Document(sc);
-        inputDocument.parseDocument();
-    }
-
-    public ArrayList<String> spellingErrors() {
-        ArrayList<String> errors = new ArrayList<String>();
-        return errors;
-    }
+    
 }
