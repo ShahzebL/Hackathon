@@ -48,6 +48,10 @@ public class Document
         getNextToken();
     }
 
+    public HashMap<ArrayList<Integer>> getWordsInSentences()
+    {
+        return wordsInSentences;
+    }
     /**
      * Retrieves the next Token object from the Scanner
      */
@@ -85,6 +89,12 @@ public class Document
         {
             if (currentToken.getType() == Scanner.TOKEN_TYPE.WORD)
             {
+
+                //code for adding repetition data structure
+                wordsInSentences.putIfAbsent(currentToken, new ArrayList<Integer>());
+                wordsInSentences.get(currentToken).add(sentenceCounter);
+
+
                 System.out.println(currentToken);
                 p.addToken(currentToken);
                 wordList.add(currentToken);

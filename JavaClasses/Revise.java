@@ -8,13 +8,14 @@ public class Revise
     private PrintWriter outf;
     private ArrayList<String> wordDictionary;
     private Document inputDocument;
-    
+    private HashMap<ArrayList<Integer>> wordsInSentences;
 
     public Revise(String filename) throws IOException
     {
         readDictWords("wordList.txt");
         readInputFile(filename);
         f.close();
+        
     }
     public void readDictWords(String filename) throws IOException
     {
@@ -38,6 +39,7 @@ public class Revise
         Scanner sc = new Scanner(f);
         inputDocument = new Document(sc);
         inputDocument.parseDocument();
+        wordsInSentences = inputDocument.getWordsInSentences();
     }
 
     public ArrayList<Token> spellingErrors()
