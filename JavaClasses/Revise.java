@@ -64,7 +64,37 @@ public class Revise
         {
             outf.println(t.getToken());
         }
+
+        noteRepetition(outf);
+
         outf.close();
+    }
+
+    public void noteRepitition(PrintWriter outf)
+    {
+        for(Token k: wordsInSentences.keySet())
+        {
+            int consecutive = 0;
+            ArrayList<Integer> sentences = wordsInSentences.get(k);
+
+            for(int i = 0; i<sentences.size()-1; i++)
+            {
+                if(sentences.get(i)==sentences.get(i+1))
+                {
+                    consecutive++;
+
+                }
+            }
+            if(consecutive>2)
+            {
+                addRepetition(outf, k, consecutive);
+            }
+        }
+    }
+
+    public void addRepetition(PrintWriter outf, Token k, int consecutive)
+    {
+        outf.println(k.getToken()+" is a repetitious word occuring in "+consecutive+" consecutive sentences.");
     }
 
 }
