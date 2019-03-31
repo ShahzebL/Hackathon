@@ -5,17 +5,15 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
 </head>
+
 <body>
-    <div class = "ui main text container segment">
-        <div class = "ui huge header">Text Enhancer</div>
-        <form class = "ui form" action = "/revise" method = "POST">
-            <div class = "field">
-                <textarea name= "essay_field" required></textarea>
-            </div>
-            <input class = "ui green big basic button" type = "submit">
+    <div class="ui main text container segment" style="margin-top: 10px;">
+        <div class="ui huge header">Text Enhancer</div>
+        <form class="ui form" action="/revise" method="POST" id="essay_getter">
+            <textarea rows="4" cols="50" name="essay" placeholder="Enter essay here..." form="essay_getter"></textarea>
+            <input class="ui green big basic button" style="margin-top: 20px;" type="submit" />
         </form>
     </div>
-
 </body>
 
 </html>
