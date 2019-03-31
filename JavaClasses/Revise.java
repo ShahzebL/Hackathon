@@ -8,6 +8,7 @@ public class Revise
     private PrintWriter outf;
     private ArrayList<String> wordDictionary;
     private Document inputDocument;
+    
 
     public Revise(String filename) throws IOException
     {

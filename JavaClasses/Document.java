@@ -9,6 +9,8 @@ import java.util.*;
  */
 public class Document
 {
+    private int sentenceCounter;
+
     private Scanner stdin;
     private ArrayList<Sentence> sentences;
     private ArrayList<Token> wordList;
@@ -20,6 +22,9 @@ public class Document
     private int numPhrases;
     private int numSentences;
     private int totWordLen;
+
+    private HashMap<ArrayList<Integer>> wordsInSentences;
+    
     //private int numUniqueWords;
 
     /**
@@ -29,6 +34,8 @@ public class Document
      */
     public Document(Scanner sc)
     {
+        sentenceCounter = 0;
+        wordsInSentences = new HashMap<ArrayList<Integer>>();
         stdin = sc;
         sentences = new ArrayList<Sentence>();
         wordList = new ArrayList<Token>();
@@ -108,6 +115,7 @@ public class Document
      */
     private Sentence parseSentence()
     {
+        sentenceCounter++;
         Sentence s = new Sentence();
         while (stdin.hasNextToken() &&currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_FILE
                 && currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_SENTENCE)
