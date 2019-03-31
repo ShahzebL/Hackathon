@@ -1,48 +1,21 @@
 import java.util.*;
 import java.io.*;
-import java.util.Arrays;
 
-public class Revise {
+
+public class Revise
+{
     private BufferedReader f;
     private PrintWriter outf;
     private ArrayList<String> wordDictionary;
-    private ArrayList<String> humanText;
-    private Scanner inputScanner;
-    private Scanner dictScanner;
     private Document inputDocument;
-    
+
     public Revise(String filename) throws IOException
     {
         readDictWords("wordList.txt");
         readInputFile(filename);
+        f.close();
     }
     public void readDictWords(String filename) throws IOException
-     {
-         
-         f = new BufferedReader(new FileReader(filename));
-         StringTokenizer st = new StringTokenizer(f.readLine());
-         int numWords = Integer.parseInt(st.nextToken());
-
-         wordDictionary = new ArrayList<String>();
-
-         for(int i = 0; i < numWords; i++)
-         {
-             st = new StringTokenizer(f.readLine());
-             wordDictionary.add(st.nextToken());
-         }
-     }
-
-     public void readInputFile(String filename) throws IOException
-     {
-         f = new BufferedReader(new FileReader(filename));
-         Scanner sc = new Scanner(f);
-         inputDocument = new Document(sc);
-         inputDocument.parseDocument();
-     } 
-
-     
-
-    public void readWords(String filename) throws IOException
     {
 
         f = new BufferedReader(new FileReader(filename));
@@ -51,18 +24,25 @@ public class Revise {
 
         wordDictionary = new ArrayList<String>();
 
-        for (int i = 0; i < numWords; i++) {
+        for(int i = 0; i < numWords; i++)
+        {
             st = new StringTokenizer(f.readLine());
             wordDictionary.add(st.nextToken());
         }
     }
-    public ArrayList<Token> spellingErrors() 
+
+    public void readInputFile(String filename) throws IOException
+    {
+        f = new BufferedReader(new FileReader(filename));
+        Scanner sc = new Scanner(f);
+        inputDocument = new Document(sc);
+        inputDocument.parseDocument();
+    }
+
+    public ArrayList<Token> spellingErrors()
     {
         HashSet<Token> inWords = inputDocument.getWordSet();
         ArrayList<Token> errors = new ArrayList<Token>();
-        
-
-
         for(Token t: inWords)
         {
             if(!wordDictionary.contains(t.getToken()))
@@ -72,10 +52,10 @@ public class Revise {
         }
         return errors;
     }
-    
+
     public void outputErrors(ArrayList<Token> errors) throws IOException
     {
-        PrintWriter outf = new PrintWriter(new File("errors.txt"));
+        outf = new PrintWriter(new File("errors.txt"));
 
         for(Token t: errors)
         {
@@ -83,5 +63,5 @@ public class Revise {
         }
         outf.close();
     }
-    
+
 }

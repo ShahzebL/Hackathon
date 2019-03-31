@@ -5,7 +5,7 @@
  * @author Shounak Ghosh
  * @version 2.20.2019
  */
-final class Token 
+final class Token
 {
     private Scanner.TOKEN_TYPE type;
     private String token;
@@ -15,7 +15,7 @@ final class Token
      * @param obj the type of token to be created
      * @param token the actual token itself
      */
-    public Token(Scanner.TOKEN_TYPE obj, String token) 
+    public Token(Scanner.TOKEN_TYPE obj, String token)
     {
         type = obj;
         this.token = token;
@@ -25,11 +25,11 @@ final class Token
      * Retrieves the token 
      * @return the String stored in the token variable
      */
-    public String getToken() 
+    public String getToken()
     {
         return token;
     }
-    
+
     /**
      * Retrieves the token type
      * @return the type of the token
@@ -43,7 +43,7 @@ final class Token
      * Retrieves a String representation of the Token object
      * @return a String representation of the Token object
      */
-    public String toString() 
+    public String toString()
     {
         return "Token: " + token + "\t Type: " + type;
     }
@@ -54,9 +54,9 @@ final class Token
      * @return true if this and other have the same type 
      *         and their tokens are equal; false otherwise
      */
-    public boolean equals(Object other) 
+    public boolean equals(Object other)
     {
-        if (!(other instanceof Token)) 
+        if (!(other instanceof Token))
         {
             return false;
         }
@@ -70,7 +70,7 @@ final class Token
      * Retrieves the hashValue of the Token Object
      * @return an integer representation of the token Object
      */
-    public int hashCode() 
+    public int hashCode()
     {
         return token.hashCode();
     }

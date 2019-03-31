@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * Stores information about a given document
- * 
+ *
  * @author Shounak Ghosh
  * @version 3.30.2019
  *
@@ -24,7 +24,7 @@ public class Document
 
     /**
      * Constructor: Creates a Document object
-     * 
+     *
      * @param sc Scanner object used to read in Tokens
      */
     public Document(Scanner sc)
@@ -51,7 +51,7 @@ public class Document
 
     /**
      * Checks whether the given Token is equal to currentToken
-     * 
+     *
      * @param obj The Token to be checked
      */
     private void eat(Token obj)
@@ -64,21 +64,21 @@ public class Document
     }
 
     /**
-     * Parses a Phrase until a phrase terminator, 
+     * Parses a Phrase until a phrase terminator,
      * sentence terminator, or the end of the file is reached
-     * 
+     *
      * @return The Phrase parsed
      */
     private Phrase parsePhrase()
     {
         Phrase p = new Phrase();
-        while (currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_FILE
+        while (stdin.hasNextToken() && currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_FILE
                 && currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_PHRASE
                 && currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_SENTENCE)
         {
             if (currentToken.getType() == Scanner.TOKEN_TYPE.WORD)
             {
-                //System.out.println(currentToken);
+                System.out.println(currentToken);
                 p.addToken(currentToken);
                 wordList.add(currentToken);
                 wordSet.add(currentToken);
@@ -86,6 +86,12 @@ public class Document
                 totWordLen += currentToken.getToken().length();
             }
             eat(currentToken);
+        }
+
+        if(!stdin.hasNextToken())
+        {
+            System.out.println(currentToken);
+            p.addToken(currentToken);
         }
 
         if (currentToken.getType() == Scanner.TOKEN_TYPE.END_OF_PHRASE)
@@ -97,13 +103,13 @@ public class Document
     /**
      * Parses a Sentence until a sentence terminator or the end of the file is
      * reached
-     * 
+     *
      * @return The Sentence parsed
      */
     private Sentence parseSentence()
     {
         Sentence s = new Sentence();
-        while (currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_FILE
+        while (stdin.hasNextToken() &&currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_FILE
                 && currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_SENTENCE)
         {
             s.addPhrase(parsePhrase());
@@ -119,20 +125,24 @@ public class Document
      */
     public void parseDocument()
     {
-        while (currentToken.getType() != Scanner.TOKEN_TYPE.END_OF_FILE)
+        while (stdin.hasNextToken())
         {
-
             sentences.add(parseSentence());
             numSentences++;
         }
+
+        wordList.add(currentToken);
+        wordSet.add(currentToken);
+
+        //System.out.println(currentToken);
+
         if (currentToken.getType() == Scanner.TOKEN_TYPE.END_OF_FILE)
             eat(currentToken);
-
     }
 
     /**
      * Retrieves a shallow copy of the document
-     * 
+     *
      * @return An ArrayList of all the Sentences in the document
      */
     public ArrayList<Sentence> getCopy()
@@ -142,7 +152,7 @@ public class Document
 
     /**
      * Retrieves a list of all the words in the document
-     * 
+     *
      * @return An ArrayList of all the words in the document
      */
     public ArrayList<Token> getWordList()
@@ -152,7 +162,7 @@ public class Document
 
     /**
      * Retrieves a set of all the words in the document
-     * 
+     *
      * @return An HashSet of all words in the document
      */
     public HashSet<Token> getWordSet()
@@ -162,7 +172,7 @@ public class Document
 
     /**
      * Retrieves the number of words in the document
-     * 
+     *
      * @return The number of words in the document
      */
     public int getNumWords()
@@ -172,7 +182,7 @@ public class Document
 
     /**
      * Retrieves the number of phrases in the document
-     * 
+     *
      * @return The number of phrases in the document
      */
     public int getNumPhrases()
@@ -182,19 +192,19 @@ public class Document
 
     /**
      * Retrieves the number of sentences in the document
-     * 
+     *
      * @return The number of sentences in the document
      */
     public int getNumSentences()
     {
         return numSentences;
     }
-    
+
     /**
      * Retrieves the total length of all the words
      * @return The total length of all the words
      */
-    public int totalWordLength() 
+    public int totalWordLength()
     {
         return totWordLen;
     }

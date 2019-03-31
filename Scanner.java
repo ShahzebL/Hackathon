@@ -12,9 +12,9 @@ import java.io.Reader;
  * a token and the input is at the end-of-file. 4. A phrase separator which
  * consists of one of the characters ",",":" or ";". 5. A digit. 6. Any other
  * character not defined above.
- * 
- * 
- * 
+ *
+ *
+ *
  * @author Shounak Ghosh + group
  * @version 03.30.2019
  *
@@ -39,7 +39,7 @@ public class Scanner
      * BufferedReader wrapped around a FileReader The instance field for the Reader
      * is initialized to the input parameter, and the endOfFile indicator is set to
      * false. The currentChar field is initialized by the getNextChar method.
-     * 
+     *
      * @param in is the reader object supplied by the program constructing this
      *           Scanner object.
      */
@@ -80,7 +80,7 @@ public class Scanner
     // then get the next character
     /**
      * Checks whether currentChar and the parameter are equal
-     * 
+     *
      * @param object The String to be checked
      */
     private void eat(String object)
@@ -94,7 +94,7 @@ public class Scanner
 
     /**
      * Checks whether the parameter is a letter
-     * 
+     *
      * @param s the String to be checked
      * @return returns true if s is a letter; false otherwise
      */
@@ -105,7 +105,7 @@ public class Scanner
 
     /**
      * Checks whether the parameter is a digit
-     * 
+     *
      * @param s the String to be checked
      * @return returns true if s is a digit; false otherwise
      */
@@ -116,7 +116,7 @@ public class Scanner
 
     /**
      * Checks whether the parameter is a special character
-     * 
+     *
      * @param s the String to be checked
      * @return returns true if s is a special character; false otherwise
      */
@@ -127,7 +127,7 @@ public class Scanner
 
     /**
      * Checks whether the parameter is a phrase terminator
-     * 
+     *
      * @param s the String to be checked
      * @return returns true if s is a phrase terminator; false otherwise
      */
@@ -138,7 +138,7 @@ public class Scanner
 
     /**
      * Checks whether the parameter is a sentence terminator
-     * 
+     *
      * @param s the String to be checked
      * @return returns true if s is a sentence terminator; false otherwise
      */
@@ -149,7 +149,7 @@ public class Scanner
 
     /**
      * Checks whether the parameter is a whitespace
-     * 
+     *
      * @param s the String to be checked
      * @return returns true if s is a whitespace; false otherwise
      */
@@ -161,7 +161,7 @@ public class Scanner
 
     /**
      * Checks whether any more tokens exist within the file
-     * 
+     *
      * @return true if end-of-file has not been reached; false otherwise
      */
     public boolean hasNextToken()
@@ -171,7 +171,7 @@ public class Scanner
 
     /**
      * Retrieves the next Token Object in the file
-     * 
+     *
      * @return the next Token Object in the file
      */
     public Token nextToken()
@@ -183,27 +183,27 @@ public class Scanner
 
         }
         String currChar = currentChar.toLowerCase(); // don't want to modify original variable
-        TOKEN_TYPE t = null; // type of token to be determined
+        TOKEN_TYPE t = TOKEN_TYPE.UNKNOWN; // type of token to be determined
 
         if (isDigit(currChar))
         {
             t = TOKEN_TYPE.DIGIT;
             eat(currentChar);
-            return new Token(t, currChar); 
+            return new Token(t, currChar);
         }
         else if (isPhraseTerminator(currChar))
         {
             t = TOKEN_TYPE.END_OF_PHRASE;
             eat(currentChar);
-            return new Token(t, currChar); 
+            return new Token(t, currChar);
         }
         else if (isSentenceTerminator(currChar))
         {
             t = TOKEN_TYPE.END_OF_SENTENCE;
             eat(currentChar);
-            return new Token(t, currChar); 
+            return new Token(t, currChar);
         }
-        else if (isLetter(currChar)) 
+        else if (isLetter(currChar))
         {
             currChar = "";
             t = TOKEN_TYPE.WORD;
@@ -213,19 +213,19 @@ public class Scanner
                 eat(currentChar);
             }
 
-            return new Token(t, currChar); 
+            return new Token(t, currChar);
         }
         else if (hasNextToken())
         {
             t = TOKEN_TYPE.UNKNOWN;
             eat(currentChar);
-            return new Token(t, currChar); 
+            return new Token(t, currChar);
         }
         else
         {
             t = TOKEN_TYPE.END_OF_FILE;
             eat(currentChar);
-            return new Token(t, currChar);          
+            return new Token(t, currChar);
         }
 
     }
