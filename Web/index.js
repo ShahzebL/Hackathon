@@ -6,9 +6,7 @@ index.set("view engine", "ejs");
 const { promisify } = require('util')
 
 index.get("/", async function (req, res) {
-    console.log("run");
-    await res.render("index");
-
+    res.render("index");
 });
 
 index.post("/revise", bodyParser(), async function (req, res) {
@@ -16,6 +14,7 @@ index.post("/revise", bodyParser(), async function (req, res) {
 
     let err = await promisify(fs.writeFile)('../in.txt', body)
     if (err) res.status(500).send("Error while writing to file.")
+
 
     // fancy java stuff to process. maybe use exec?
     // then respond back
@@ -26,6 +25,7 @@ index.post("/revise", bodyParser(), async function (req, res) {
 })
 
 var processText = function() {
+    console.log("Reached processText")
     var myClass = Java.type("JavaClasses.ReviseTester");
     myClass.main();
 }
